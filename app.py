@@ -2,6 +2,8 @@ from flask import Flask, request, render_template, redirect, flash, session
 from boggle import Boggle
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "nge4ev"
+
 
 boggle_game = Boggle()
 
