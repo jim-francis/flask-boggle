@@ -8,5 +8,16 @@
 </head>
 <body>
     <h1>Hi!</h1>
+    <table>
+        <tbody>
+            {% for row in board %}
+            <tr>
+                {% for cell in row %}
+                <td>{{cell}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
