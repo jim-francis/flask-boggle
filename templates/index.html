@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/app.css">
     <title>Boggle</title>
 </head>
 <body>
-    <h1>Hi!</h1>
-    <table>
+    <h1>Boggle!</h1>
+    <table class="gameBoard">
         <tbody>
             {% for row in board %}
             <tr>
@@ -19,14 +20,14 @@
             {% endfor %}
         </tbody>
     </table>
-    <form action="POST">
+    <form action="POST" id="submitForm">
         <input type="text" name="guess" placeholder="Enter Guess">
-        <button>Submit</button>
+        <button id="submitButton">Submit</button>
     </form>
+
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script> src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
-    crossorigin="anonymous"</script>
-    <script src="static/app.js"></script>
+    <script src="http://unpkg.com/jquery"></script>
+    <script src="/static/app.js"></script>
 </body>
 </html>
