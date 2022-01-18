@@ -1,3 +1,11 @@
 td {
     padding: 25px;
 }
+
+.error{
+    background-color: red;
+}
+
+.success{
+    background-color: lightblue;
+}
