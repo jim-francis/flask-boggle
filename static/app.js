@@ -1,10 +1,12 @@
 
-$('#submit-form').submit(async function(e){
+$('#submit-form').on("submit", async function(e){
     e.preventDefault();
     let word = getWord()
+    console.log(word)
     // let res = await axios.get("/check-word", { params: { word: word }})
     let res = await getResponse(word)
-    checkWord(res)
+    console.log(res)
+    await checkWord(res)
     $(".word").val("").focus()
 });
 
@@ -18,7 +20,7 @@ async function getResponse(word){
     return res.data.result
 }
 
-function checkWord(res){
+async function checkWord(res){
     if (res === "not-word"){
         postMessage("Not a word", "error")
     } else if (res === "not-on-board"){
@@ -29,5 +31,6 @@ function checkWord(res){
 }
 
 function postMessage(message, style){
-    $(".messages").text(message).removeClass().addClass(`message ${style}`)
+    console.log(message, style)
+    $("#messages").text(message).removeClass().addClass(`message ${style}`)
 }
