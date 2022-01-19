@@ -20,3 +20,14 @@ def check_word():
     response = boggle_game.check_valid_word(board,word)
     
     return jsonify({"result": response})
+
+@app.route("/post-stats", methods=["POST"])
+def post_stats():
+    score = request.json["score"]
+    highscore = session.get("highscore", 0)
+    playcount = session.get("playcount", 0)
+    
+    session["playcount"] = playcount + 1
+    session["highscore"] = max(score, highscore)
+    
+    return jsonify(newHighscore= score > highscore)

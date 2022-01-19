@@ -50,6 +50,16 @@ const timerTiming = setInterval(function(){
     if (time === -1){
         clearInterval(timerTiming)
         $('#timer').text("All done")
-        $(".add-word").hide();
+        endGame()
     }
 }, 1000)
+
+async function endGame(){
+    $(".add-word").hide();
+    const res = await axios.post("/post-stats", { score: score })
+    if (res.data.newHighscore){
+        postMessage(`New highscore! ${score}`, "ok")
+    } else {
+        postMessage(`Final score: ${score}`, "ok")
+    }
+}
