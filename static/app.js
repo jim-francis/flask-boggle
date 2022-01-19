@@ -40,3 +40,16 @@ function handleScore(word){
     score+= word.length
     $("#score").text(score)
 }
+
+let time = 5
+
+const timerTiming = setInterval(function(){
+    $('#timer').text(time)
+    time -= 1;
+
+    if (time === -1){
+        clearInterval(timerTiming)
+        $('#timer').text("All done")
+        $(".add-word").hide();
+    }
+}, 1000)
