@@ -1,12 +1,13 @@
+let score = 0
 
 $('#submit-form').on("submit", async function(e){
     e.preventDefault();
     let word = getWord()
-    console.log(word)
-    // let res = await axios.get("/check-word", { params: { word: word }})
     let res = await getResponse(word)
-    console.log(res)
     await checkWord(res)
+    if(res === "ok"){
+        handleScore(word)
+    }
     $(".word").val("").focus()
 });
 
@@ -33,4 +34,9 @@ async function checkWord(res){
 function postMessage(message, style){
     console.log(message, style)
     $("#messages").text(message).removeClass().addClass(`message ${style}`)
+}
+
+function handleScore(word){
+    score+= word.length
+    $("#score").text(score)
 }
