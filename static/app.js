@@ -1,12 +1,20 @@
 let score = 0
+let time = 60
+let words = new Set()
 
 $('#submit-form').on("submit", async function(e){
     e.preventDefault();
     let word = getWord()
+    if (words.has(word)){
+        postMessage("Already had em", "error")
+        $(".word").val("").focus()
+        return
+    }
     let res = await getResponse(word)
     await checkWord(res)
     if(res === "ok"){
         handleScore(word)
+        words.add(word)
     }
     $(".word").val("").focus()
 });
@@ -40,8 +48,6 @@ function handleScore(word){
     score+= word.length
     $("#score").text(score)
 }
-
-let time = 5
 
 const timerTiming = setInterval(function(){
     $('#timer').text(time)
